@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 def main():
     # Load existing sales data or create empty dataframe
@@ -17,7 +16,6 @@ def main():
     con1 = st.container()
     con2 = st.container()
     con3 = st.container()
-    con4 = st.container()
     # Sidebar for user input
     with st.sidebar:
         st.title('Gestor de ventas')
@@ -59,20 +57,7 @@ def main():
         with con3:       
             st.subheader('Historial de gastos (Ultimos 10)')
             st.table(exp_data.head(10))
-        with con4:
-            st.subheader('Distrubucion ventas del día')
-            ventas_dia2 = sales_data.query(f"Fecha == '{date1}'")
-            product_sales = ventas_dia2.groupby('Producto')['Cantidad'].sum().reset_index()
-            st.write(product_sales)
-            plt.figure(figsize=(10, 6))
-            sns.barplot(data=product_sales, x='Producto', y='Cantidad')
-            plt.title(f'Distribución de ventas {date1}')
-            plt.xlabel('Producto')
-            plt.ylabel('Ventas')
-            st.set_option('deprecation.showPyplotGlobalUse', False)
-            st.pyplot()
-
-
+  
 
 def load_sales_data():
     try:
