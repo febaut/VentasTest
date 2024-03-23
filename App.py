@@ -43,7 +43,7 @@ def main():
         with con1:         
         #Ventas
             st.subheader('Ultimas 10 ventas')
-            st.table(sales_data.sort_values(by='col1', ascending=False).head(10))
+            st.table(sales_data.tail(10))
         
         with con2:         
         #Ventas
@@ -56,7 +56,7 @@ def main():
             st.write(f"Total despues de gastos $: {ventas_dia - gastos_dia}")
         with con3:       
             st.subheader('Historial de gastos (Ultimos 10)')
-            st.table(exp_data.sort_values(by='col1', ascending=False).head(10))
+            st.table(exp_data.sort_values(by='Fecha', ascending=False).head(10))
   
 
 def load_sales_data():
